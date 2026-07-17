@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="form-card card">
+    <h1 class="form-title">Report a Stray Sighting</h1>
+    <p class="form-subtitle">
+      Help coordinate rescues! Fill in as many details as possible so other members
+      and rescue organizations can locate and save the animal.
+    </p>
+
+    @if (submitted) {
+      <div class="success-banner">✅ Thanks! Your report has been submitted.</div>
+    }
+    @if (submitError) {
+      <div class="error-banner">{{ submitError }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label class="form-label">1. What type of animal is it?</label>
+        <div class="species-picker">
+          <button type="button" class="species-option" [class.species-active]="form.value.species === 'DOG'" (click)="selectSpecies('DOG')">
+            <span class="species-emoji">🐕</span>
+            <span>DOG</span>
+          </button>
+          <button type="button" class="species-option" [class.species-active]="form.value.species === 'CAT'" (click)="selectSpecies('CAT')">
+            <span class="species-emoji">🐈</span>
+            <span>CAT</span>
+          </button>
+          <button type="button" class="species-option" [class.species-active]="form.value.species === 'OTHER'" (click)="selectSpecies('OTHER')">
+            <span class="species-emoji">🐾</span>
+            <span>OTHER</span>
+          </button>
+        </div>
+      </div>
+
+      <label class="form-label section-label">2. Breed, Color, and Size</label>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Breed / Mix</label>
+          <input class="form-control" type="text" formControlName="breed" placeholder="e.g. Golden Retriever Mix, Tabby Cat, Husky" />
+          @if (form.controls.breed.invalid && form.controls.breed.touched) {
+            <div class="field-error">Breed is required</div>
+          }
+        </div>
+        <div class="form-group">
+          <label class="form-label">Primary Colors / Markings</label>
+          <input class="form-control" type="text" formControlName="colors" placeholder="e.g. Black with white paws, Ginger stripes" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Estimated Size</label>
+          <select class="form-control" formControlName="size">
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Photo URL (optional)</label>
+          <input class="form-control" type="text" formControlName="imageUrl" placeholder="https://..." />
+        </div>
+      </div>
+
+      <label class="form-label section-label">3. Location &amp; Description</label>
+      <div class="form-group">
+        <label class="form-label">Where was it seen?</label>
+        <input class="form-control" type="text" formControlName="locationDetails" placeholder="e.g. Near the local library" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description / Behavior</label>
+        <textarea class="form-control" rows="4" formControlName="description" placeholder="Friendly, knows basic commands, appears thin and skittish, etc."></textarea>
+      </div>
+
+      <label class="form-label section-label">4. Your Contact Info (optional)</label>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Phone</label>
+          <input class="form-control" type="text" formControlName="contactPhone" placeholder="555-0123" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-control" type="email" formControlName="contactEmail" placeholder="you@example.com" />
+        </div>
+      </div>
+
+      <button class="btn btn-primary submit-btn" type="submit" [disabled]="submitting">
+        {{ submitting ? 'Submitting…' : 'Submit Report' }}
+      </button>
+    </form>
+  </div>
+</div>

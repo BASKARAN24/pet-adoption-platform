@@ -1,0 +1,26 @@
+<header class="navbar">
+  <div class="navbar-inner">
+    <a routerLink="/" class="brand">
+      <span class="brand-icon">🐾</span>
+      <div>
+        <div class="brand-title">PawRescue</div>
+        <div class="brand-subtitle">STRAY ANIMAL REPORTING &amp; ADOPTION</div>
+      </div>
+    </a>
+
+    <nav class="nav-tabs">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Sightings Board</a>
+      <a routerLink="/report" routerLinkActive="active">+ Report Stray</a>
+      <a routerLink="/adoptions" routerLinkActive="active">Adoption Center</a>
+    </nav>
+
+    <div class="auth-actions">
+      @if (authService.isLoggedIn()) {
+        <span class="username">{{ authService.username() }}</span>
+        <button class="btn btn-secondary" (click)="logout()">Log out</button>
+      } @else {
+        <a routerLink="/login" class="btn btn-secondary">Log in</a>
+      }
+    </div>
+  </div>
+</header>

@@ -1,0 +1,40 @@
+<div class="container narrow">
+  <div class="auth-card card">
+    <h1 class="auth-title">{{ mode === 'login' ? 'Log In' : 'Create an Account' }}</h1>
+    <p class="auth-subtitle">
+      {{ mode === 'login' ? 'Shelter staff log in here to review adoption applications.' : 'Public registration does not grant application review access — that\'s reserved for the shelter admin account.' }}
+    </p>
+
+    @if (error) {
+      <div class="error-banner">{{ error }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input class="form-control" type="text" formControlName="username" />
+      </div>
+
+      @if (mode === 'register') {
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-control" type="email" formControlName="email" />
+        </div>
+      }
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-control" type="password" formControlName="password" />
+      </div>
+
+      <button class="btn btn-primary submit-btn" type="submit" [disabled]="submitting">
+        {{ submitting ? 'Please wait…' : (mode === 'login' ? 'Log In' : 'Register') }}
+      </button>
+    </form>
+
+    <p class="toggle-text">
+      {{ mode === 'login' ? "Don't have an account?" : 'Already have an account?' }}
+      <a (click)="toggleMode()">{{ mode === 'login' ? 'Register' : 'Log in' }}</a>
+    </p>
+  </div>
+</div>

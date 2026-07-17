@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="page-header">
+    <h1><span class="heart-icon">💚</span> Adoption Management Dashboard</h1>
+    <p>Review, approve, or decline adoption requests. Approved applications automatically transition the stray animal's status to "Adopted".</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="chip" [class.chip-active]="filter === 'ALL'" (click)="setFilter('ALL')">All</button>
+    <button class="chip" [class.chip-active]="filter === 'PENDING'" (click)="setFilter('PENDING')">Pending</button>
+    <button class="chip" [class.chip-active]="filter === 'APPROVED'" (click)="setFilter('APPROVED')">Approved</button>
+    <button class="chip" [class.chip-active]="filter === 'DECLINED'" (click)="setFilter('DECLINED')">Declined</button>
+  </div>
+
+  @if (loading) {
+    <p class="status-text">Loading applications…</p>
+  } @else if (error) {
+    <p class="status-text error-text">{{ error }}</p>
+  } @else if (applications.length === 0) {
+    <div class="empty-state card">No adoption applications yet.</div>
+  } @else {
+    <div class="applications-list">
+      @for (app of applications; track app.id) {
+        <div class="application-card card">
+          <div class="app-header">
+            <div>
+              <div class="applicant-name">{{ app.applicantName }}</div>
+              <div class="applied-date">Applied on {{ app.appliedAt | date: 'MMM d, y' }}</div>
+            </div>
+            <span class="status-pill status-{{ app.status.toLowerCase() }}">{{ app.status | titlecase }}</span>
+          </div>
+
+          <div class="target-pet">
+            <span class="target-pet-label">TARGET PET</span>
+            <span class="target-pet-value">{{ app.animal.breed }}<span *ngIf="app.animal.locationDetails"> (from {{ app.animal.locationDetails }})</span></span>
+          </div>
+
+          <div class="app-details">
+            <div class="detail-row">✉️ {{ app.email }}</div>
+            @if (app.phone) {
+              <div class="detail-row">📞 {{ app.phone }}</div>
+            }
+            <div class="detail-row">🏠 Housing: <strong>{{ housingLabel(app.housingType) }}</strong></div>
+            <div class="detail-row">🛡️ Pet Experience: <strong>{{ experienceLabel(app.petExperience) }}</strong></div>
+          </div>
+
+          @if (app.message) {
+            <div class="applicant-message">
+              <div class="message-label">APPLICANT'S MESSAGE</div>
+              <p>"{{ app.message }}"</p>
+            </div>
+          }
+
+          @if (app.status === 'PENDING') {
+            <div class="action-row">
+              <button class="btn btn-primary" [disabled]="actioningId === app.id" (click)="approve(app)">Approve</button>
+              <button class="btn btn-danger" [disabled]="actioningId === app.id" (click)="decline(app)">Decline</button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

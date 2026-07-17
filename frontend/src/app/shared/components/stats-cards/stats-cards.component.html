@@ -1,0 +1,37 @@
+<div class="stats-grid">
+  <div class="stat-card stat-purple">
+    <div class="stat-header">
+      <span class="stat-label">TOTAL REPORTS</span>
+      <span class="stat-icon">ℹ️</span>
+    </div>
+    <div class="stat-value">{{ stats?.totalReports ?? 0 }}</div>
+    <div class="stat-caption">All strays tracked</div>
+  </div>
+
+  <div class="stat-card stat-orange">
+    <div class="stat-header">
+      <span class="stat-label">ACTIVE SPOTTED</span>
+      <span class="stat-icon">🛡️</span>
+    </div>
+    <div class="stat-value">{{ stats?.activeSpotted ?? 0 }}</div>
+    <div class="stat-caption">Sightings being searched</div>
+  </div>
+
+  <div class="stat-card stat-green">
+    <div class="stat-header">
+      <span class="stat-label">RESCUED &amp; SAFE</span>
+      <span class="stat-icon">✨</span>
+    </div>
+    <div class="stat-value">{{ stats?.rescuedAndSafe ?? 0 }}</div>
+    <div class="stat-caption">Housed at shelters</div>
+  </div>
+
+  <div class="stat-card stat-pink">
+    <div class="stat-header">
+      <span class="stat-label">HAPPY ENDINGS</span>
+      <span class="stat-icon">❤️</span>
+    </div>
+    <div class="stat-value">{{ stats?.happyEndings ?? 0 }}</div>
+    <div class="stat-caption">Reunited &amp; adopted</div>
+  </div>
+</div>

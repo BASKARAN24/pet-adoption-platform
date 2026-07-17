@@ -1,0 +1,61 @@
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+}
+
+.stat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.stat-icon {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.stat-value {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-caption {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.stat-purple { background: var(--color-purple-bg); }
+.stat-purple .stat-label, .stat-purple .stat-value, .stat-purple .stat-caption { color: var(--color-purple); }
+
+.stat-orange { background: var(--color-orange-bg); }
+.stat-orange .stat-label, .stat-orange .stat-value, .stat-orange .stat-caption { color: var(--color-orange); }
+
+.stat-green { background: var(--color-green-bg); }
+.stat-green .stat-label, .stat-green .stat-value, .stat-green .stat-caption { color: var(--color-green); }
+
+.stat-pink { background: var(--color-pink-bg); }
+.stat-pink .stat-label, .stat-pink .stat-value, .stat-pink .stat-caption { color: var(--color-pink); }
+
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .stats-grid { grid-template-columns: 1fr; }
+}

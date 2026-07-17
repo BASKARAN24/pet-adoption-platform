@@ -1,0 +1,154 @@
+.page-header {
+  margin-bottom: 20px;
+}
+
+.page-header h1 {
+  font-size: 22px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.heart-icon { font-size: 20px; }
+
+.page-header p {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.chip {
+  border: 1px solid var(--color-border);
+  background: white;
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.chip-active {
+  background: var(--color-text);
+  color: white;
+  border-color: var(--color-text);
+}
+
+.status-text {
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 40px 0;
+}
+
+.error-text { color: var(--color-pink); }
+
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--color-text-muted);
+}
+
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.application-card {
+  padding: 24px 28px;
+  max-width: 760px;
+}
+
+.app-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.applicant-name {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.applied-date {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.status-pill {
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.status-pending { background: var(--color-orange-bg); color: var(--color-orange); }
+.status-approved { background: var(--color-green-bg); color: var(--color-green); }
+.status-declined { background: var(--color-pink-bg); color: var(--color-pink); }
+
+.target-pet {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.target-pet-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.target-pet-value {
+  font-weight: 700;
+  color: var(--color-green);
+}
+
+.app-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.applicant-message {
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+
+.message-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+
+.applicant-message p {
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.action-row {
+  display: flex;
+  gap: 12px;
+}

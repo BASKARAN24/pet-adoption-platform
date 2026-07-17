@@ -1,0 +1,86 @@
+<div class="container">
+  <app-stats-cards [stats]="stats"></app-stats-cards>
+
+  <div class="filters-bar card">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input
+        class="form-control search-input"
+        type="text"
+        placeholder="Search species, color, location details..."
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange()" />
+    </div>
+
+    <div class="filter-group">
+      <button class="chip" [class.chip-active]="speciesFilter === 'ALL'" (click)="setSpeciesFilter('ALL')">All</button>
+      <button class="chip" [class.chip-active]="speciesFilter === 'DOG'" (click)="setSpeciesFilter('DOG')">🐕 Dog</button>
+      <button class="chip" [class.chip-active]="speciesFilter === 'CAT'" (click)="setSpeciesFilter('CAT')">🐈 Cat</button>
+      <button class="chip" [class.chip-active]="speciesFilter === 'OTHER'" (click)="setSpeciesFilter('OTHER')">🐾 Other</button>
+    </div>
+
+    <div class="filter-group">
+      <button class="chip" [class.chip-active]="statusFilter === 'ALL'" (click)="setStatusFilter('ALL')">All</button>
+      <button class="chip" [class.chip-active]="statusFilter === 'SPOTTED'" (click)="setStatusFilter('SPOTTED')">Spotted</button>
+      <button class="chip" [class.chip-active]="statusFilter === 'SAFE'" (click)="setStatusFilter('SAFE')">Safe</button>
+      <button class="chip" [class.chip-active]="statusFilter === 'REUNITED'" (click)="setStatusFilter('REUNITED')">Reunited</button>
+      <button class="chip" [class.chip-active]="statusFilter === 'ADOPTED'" (click)="setStatusFilter('ADOPTED')">Adopted</button>
+    </div>
+  </div>
+
+  @if (loading) {
+    <p class="status-text">Loading sightings…</p>
+  } @else if (error) {
+    <p class="status-text error-text">{{ error }}</p>
+  } @else if (animals.length === 0) {
+    <div class="empty-state card">
+      <p>No sightings match your filters yet.</p>
+      <a routerLink="/report" class="btn btn-primary">+ Report a Stray</a>
+    </div>
+  } @else {
+    <div class="animal-grid">
+      @for (animal of animals; track animal.id) {
+        <div class="animal-card card">
+          <div class="animal-image" [style.background-image]="animal.imageUrl ? 'url(' + animal.imageUrl + ')' : ''">
+            <span class="badge {{ badgeClass(animal.status) }} img-badge">{{ statusLabel(animal.status) }}</span>
+            <span class="species-badge img-badge-right">{{ speciesEmoji(animal.species) }} {{ animal.species | titlecase }}</span>
+            @if (!animal.imageUrl) {
+              <div class="no-image-placeholder">{{ speciesEmoji(animal.species) }}</div>
+            }
+          </div>
+          <div class="animal-body">
+            <h3 class="animal-title">{{ animal.breed }}</h3>
+            <p class="animal-description">{{ animal.description || animal.locationDetails }}</p>
+
+            @if (canAdopt(animal)) {
+              <button class="btn btn-primary adopt-btn" (click)="openAdoptModal(animal)">Apply to Adopt</button>
+            }
+
+            @if (authService.isAdmin()) {
+              <div class="status-changer">
+                <label class="status-changer-label">Update status:</label>
+                <select
+                  class="form-control status-select"
+                  [value]="animal.status"
+                  [disabled]="updatingStatusId === animal.id"
+                  (change)="changeStatus(animal, $any($event.target).value)">
+                  @for (s of allStatuses; track s) {
+                    <option [value]="s">{{ statusLabel(s) }}</option>
+                  }
+                </select>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  @if (adoptingAnimal) {
+    <app-adopt-modal
+      [animal]="adoptingAnimal"
+      (closed)="closeAdoptModal()"
+      (submittedOk)="onAdoptionSubmitted()">
+    </app-adopt-modal>
+  }
+</div>

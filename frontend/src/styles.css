@@ -1,0 +1,129 @@
+:root {
+  --color-bg: #f7f8fb;
+  --color-card: #ffffff;
+  --color-border: #e7e9ee;
+  --color-text: #1f2430;
+  --color-text-muted: #6b7280;
+
+  --color-purple: #6d5ce8;
+  --color-purple-bg: #efecfd;
+  --color-orange: #e08a2d;
+  --color-orange-bg: #fdf1e2;
+  --color-green: #1fa971;
+  --color-green-bg: #e5f8ef;
+  --color-pink: #e0507a;
+  --color-pink-bg: #fdeaf0;
+
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+
+  --shadow-card: 0 1px 3px rgba(20, 20, 43, 0.06), 0 1px 2px rgba(20, 20, 43, 0.04);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+h1, h2, h3, h4 { margin: 0; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.btn {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: opacity 0.15s ease, transform 0.05s ease;
+}
+.btn:active { transform: scale(0.98); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--color-green);
+  color: white;
+}
+.btn-primary:hover:not(:disabled) { opacity: 0.9; }
+
+.btn-secondary {
+  background: white;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.btn-secondary:hover:not(:disabled) { background: #fafafa; }
+
+.btn-danger {
+  background: var(--color-pink);
+  color: white;
+}
+.btn-danger:hover:not(:disabled) { opacity: 0.9; }
+
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+}
+
+.form-group { margin-bottom: 16px; }
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+}
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  background: white;
+  color: var(--color-text);
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-purple);
+  box-shadow: 0 0 0 3px var(--color-purple-bg);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.badge-spotted { background: var(--color-orange-bg); color: var(--color-orange); }
+.badge-safe { background: var(--color-green-bg); color: var(--color-green); }
+.badge-reunited { background: var(--color-pink-bg); color: var(--color-pink); }
+.badge-adopted { background: var(--color-purple-bg); color: var(--color-purple); }
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 24px 32px 48px;
+}
+
+@media (max-width: 900px) {
+  .container { padding: 16px; }
+}
