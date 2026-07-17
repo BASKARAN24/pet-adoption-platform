@@ -1,0 +1,34 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/pawrescue?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: Blessy21!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+app:
+  jwt:
+    secret: pawrescue_super_secret_key_change_this_in_production_env_1234567890
+    expiration-ms: 86400000 # 24 hours
+
+  cors:
+    allowed-origins: http://localhost:4200
+
+  admin:
+    username: admin
+    email: admin@pawrescue.com
+    password: ChangeMe123!  # seeded on first startup — change this, then log in with it to review adoptions
