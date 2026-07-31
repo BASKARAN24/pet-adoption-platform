@@ -4,7 +4,7 @@
 
 ### Stray Animal Reporting & Adoption Platform
 
-Report a stray, track it from sighting to safety, and rehome it — all in one place. Powered by Spring Boot, backed by MySQL, secured with JWT auth, served by Angular.
+Report a stray, track it from sighting to safety, and rehome it all in one place. Powered by Spring Boot, backed by MySQL, secured with JWT auth, served by Angular.
 
 [![Java](https://img.shields.io/badge/Java-17-ED8B00?style=flat-square&logo=openjdk&logoColor=white)](https://openjdk.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3-6DB33F?style=flat-square&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
